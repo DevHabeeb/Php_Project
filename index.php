@@ -142,7 +142,7 @@ INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habe
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="pwd" placeholder="Password" required>
         <input type="email" name="email" placeholder="Email" required>
-        <button>Update</button>
+        <button> Update</button>
     </form>
 </main>
 
