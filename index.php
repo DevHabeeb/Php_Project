@@ -1,3 +1,13 @@
+<?php 
+
+// session_start();
+
+// $_SESSION["username"] = "devhabeeb";
+
+require_once 'config.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,7 +125,7 @@ INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habe
 
 
 //Creating comment on SQL
-INSERT INTO comments(users_id, comment) VALUES (1, 'This is a comment from devhabeeb');
+INSERT INTO comments(users_id, comment_text) VALUES (1, 'This is a comment from devhabeeb');
 
 // SELECTING data in SQL
 SELECT username, email FROM users WHERE id = 1;
@@ -133,28 +143,47 @@ SELECT * FROM users RIGHT JOIN comments ON users.id = comments.users_id;
 Some data on SQL
 INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habeeb@gmail.com'); -->
 
-
-
 <main class="auth-container change">
-    <h3>Change Account</h3>
+    <h3>Sign up</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
     <form class="auth-form" action="includes/formhandler.inc.php" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="pwd" placeholder="Password" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button> Sign up</button>
+    </form>
+</main>
+
+<!-- <main class="auth-container change">
+    <h3>Change Account</h3>
+    <p class="auth-intro">Create your account and start using the site.</p>
+    <form class="auth-form" action="includes/userupdate.inc.php" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="pwd" placeholder="Password" required>
         <input type="email" name="email" placeholder="Email" required>
         <button> Update</button>
     </form>
-</main>
+</main> -->
 
-<main class="auth-container delete">
+<!-- <main class="auth-container delete">
     <h3>Delete Account</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
-    <form class="auth-form" action="includes/formhandler.inc.php" method="post">
+    <form class="auth-form" action="includes/userdelete.inc.php" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="pwd" placeholder="Password" required>
-        <input type="email" name="email" placeholder="Email" required>
         <button>Delete</button>
     </form>
-</main>
+</main> -->
+
+
+<!-- <form class="searchform" action="search.php" method="post">
+    <label for="search">Search users:</label>
+    <input type="text" id="search" name="usersearch" placeholder="Enter username...">
+    <button>Search</button>
+</form>  -->
+
+<?php
+// echo "Welcome, " . $_SESSION["username"] . "!"; 
+?>
 </body>
 </html> 

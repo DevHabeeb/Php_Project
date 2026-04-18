@@ -41,9 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Prepare and execute the SQL statement to insert data into the database
         $query = "INSERT INTO users (username, pwd, email) VALUES (?, ?, ?);";
 
+
+        $options = [
+    'cost' => 12, // The cost parameter determines the computational cost of hashing. Higher values increase security but also increase processing time.
+];
+
+$hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
+
+
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$username, $pwd, $email]);
+        $stmt->execute([$username, $hashedPwd, $email]);
 
         $pdo = null; // Close the database connection
         $stmt = null; // Close the statement
