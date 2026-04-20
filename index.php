@@ -146,13 +146,25 @@ INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habe
 <main class="auth-container change">
     <h3>Sign up</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
-    <form class="auth-form" action="includes/formhandler.inc.php" method="post">
+    <form class="auth-form" action="includes/signup.inc.php" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="pwd" placeholder="Password" required>
         <input type="email" name="email" placeholder="Email" required>
         <button> Sign up</button>
     </form>
 </main>
+
+<main class="auth-container change">
+    <h3>Login</h3>
+    <p class="auth-intro">Create your account and start using the site.</p>
+    <form class="auth-form" action="includes/login.inc.php" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="pwd" placeholder="Password" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <button>Login</button>
+    </form>
+</main>
+
 
 <!-- <main class="auth-container change">
     <h3>Change Account</h3>

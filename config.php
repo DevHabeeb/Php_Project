@@ -14,12 +14,15 @@ session_set_cookie_params([
 session_start();
 
 if (!isset($_SESSION["last_regeneration"])) {
-    session_regenerate_id(true); // Regenerate session ID to prevent fixation
-    $_SESSION["last_regeneration"] = time();
+    regenerateSession(); // Regenerate session ID on first load
 } else {
     $interval = 60 * 30; // Regenerate every 30 minutes
     if (time() - $_SESSION["last_regeneration"] >= $interval) {
-        session_regenerate_id(true);
-        $_SESSION["last_regeneration"] = time();
+        regenerateSession(); // Regenerate session ID after the specified interval  
     }
+}
+
+function regenerateSession() {
+    session_regenerate_id(true); // Regenerate session ID to prevent fixation
+    $_SESSION["last_regeneration"] = time(); // Store the time of the last regeneration 
 }
