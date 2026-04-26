@@ -83,6 +83,19 @@ body {
     box-shadow: 0 14px 30px rgba(106, 90, 230, 0.25);
 }
 
+.error {
+    color: #e53e3e;
+    font-size: 1.2rem;
+    margin-top: 8px;
+    
+}
+
+.success {
+    color: #38a169;
+    font-size: 1.2rem;
+    margin-top: 8px;
+    
+}
 @media (max-width: 500px) {
     .auth-container {
         padding: 24px 18px;

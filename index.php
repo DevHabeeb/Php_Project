@@ -5,6 +5,7 @@
 // $_SESSION["username"] = "devhabeeb";
 
 require_once 'config.php';
+require_once 'includes/signup_view.inc.php';
 
 ?>
 
@@ -147,23 +148,31 @@ INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habe
     <h3>Sign up</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
     <form class="auth-form" action="includes/signup.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="pwd" placeholder="Password" required>
-        <input type="email" name="email" placeholder="Email" required>
+         <?php 
+            signup_inputs();
+        ?>
         <button> Sign up</button>
     </form>
+    <div class="error">
+        <?php
+check_signup_errors();
+?>
+    </div>
+    
 </main>
 
 <main class="auth-container change">
     <h3>Login</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
     <form class="auth-form" action="includes/login.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="pwd" placeholder="Password" required>
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="username" placeholder="Username" >
+        <input type="password" name="pwd" placeholder="Password" >
+        <input type="email" name="email" placeholder="Email" >
         <button>Login</button>
     </form>
 </main>
+
+
 
 
 <!-- <main class="auth-container change">

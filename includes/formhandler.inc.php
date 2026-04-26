@@ -51,7 +51,7 @@ $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$username, $hashedPwd, $email]);
+        $stmt->execute([$email, $username, $hashedPwd]);
 
         $pdo = null; // Close the database connection
         $stmt = null; // Close the statement

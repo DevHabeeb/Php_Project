@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwd = htmlspecialchars($_POST["pwd"]);
     $email = htmlspecialchars($_POST["email"]);
 
-    echo "Username: " . $username . "<br>";
+    echo "Username: " . $username . "<br>"; 
     echo "Password: " . $pwd . "<br>";
     echo "Email: " . $email . "<br>";
   

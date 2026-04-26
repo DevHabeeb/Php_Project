@@ -9,18 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         require_once "databasehandler.inc.php";
         require_once "signup_model.inc.php";
         require_once "signup_contr.inc.php";
- 
-    } catch (PDOException $e) {
-        die("Query failed: " . $e->getMessage());
-    }
 
-    // Error handling
+         // Error handling
     $errors = [];
     if (is_input_empty($username, $pwd, $email)) {
         $errors["empty_input"] = "Please fill in all fields.";
     }
 
-     if (is_email_valid($email)) {
+    if (!is_email_valid($email)) {
         $errors["invalid_email"] = "Please enter a valid email address.";
     }
 
@@ -32,13 +28,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["email_used"] = "Email already registered.";
     }
 
-    require_once "config.php"; // Include the config file to access the database connection 
+    require_once "../config.php"; // Include the config file to access the database connection 
 
     if ($errors) {
         $_SESSION["errors_signup"] = $errors; // Store errors in session to display on the form
+
+        $signupData = [
+           "username" => $username,
+           "email" => $email
+        ];
+       $_SESSION["signup_data"] = $signupData; // Store the entered username and email in session to pre-fill the form
+        
+
         header("Location: ../index.php"); // Redirect back to the form page
         die(); // Stop further execution   
     }
+
+    create_user($pdo, $email, $username, $pwd); // Call the function to create the user in the database
+    header("Location: ../index.php?signup=success"); // Redirect to index.php with a success message
+    $pdo = null; // Close the database connection
+    $stmt = null; // Close the statement
+    die("User created successfully!"); // Output success message and stop execution 
+ 
+    } catch (PDOException $e) {
+        die("Query failed: " . $e->getMessage());
+    }
+
+   
 
 
 
