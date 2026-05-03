@@ -6,6 +6,8 @@
 
 require_once 'config.php';
 require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
+
 
 ?>
 
@@ -144,6 +146,12 @@ SELECT * FROM users RIGHT JOIN comments ON users.id = comments.users_id;
 Some data on SQL
 INSERT INTO users(username, pwd, email) VALUES ('devhabeeb', 'habeeb123!', 'habeeb@gmail.com'); -->
 
+<h3>
+    <?php 
+    output_username();
+    ?>
+</h3>
+
 <main class="auth-container change">
     <h3>Sign up</h3>
     <p class="auth-intro">Create your account and start using the site.</p>
@@ -167,9 +175,21 @@ check_signup_errors();
     <form class="auth-form" action="includes/login.inc.php" method="post">
         <input type="text" name="username" placeholder="Username" >
         <input type="password" name="pwd" placeholder="Password" >
-        <input type="email" name="email" placeholder="Email" >
         <button>Login</button>
     </form>
+
+    <?php 
+    check_login_errors();
+    ?>
+</main>
+
+<main class="auth-container change">
+    <h3>Log Out</h3>
+    <form class="auth-form" action="includes/logout.inc.php" method="post">
+     
+        <button>Log Out</button>
+    </form>
+
 </main>
 
 

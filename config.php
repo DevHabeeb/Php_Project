@@ -13,13 +13,37 @@ session_set_cookie_params([
 
 session_start();
 
-if (!isset($_SESSION["last_regeneration"])) {
+if (isset($_SESSION["user_id"])) {
+    if (!isset($_SESSION["last_regeneration"])) {
+    regeneration_session_id_logged_in(); // Regenerate session ID on first load for logged-in users
+} else {
+    $interval = 60 * 30; // Regenerate every 30 minutes
+    if (time() - $_SESSION["last_regeneration"] >= $interval) {
+        regeneration_session_id_logged_in(); // Regenerate session ID after the specified interval for logged-in users 
+    }
+}
+
+} else {
+    if (!isset($_SESSION["last_regeneration"])) {
     regenerateSession(); // Regenerate session ID on first load
 } else {
     $interval = 60 * 30; // Regenerate every 30 minutes
     if (time() - $_SESSION["last_regeneration"] >= $interval) {
         regenerateSession(); // Regenerate session ID after the specified interval  
     }
+}
+
+}
+
+
+function regeneration_session_id_logged_in() {
+    session_regenerate_id(true); // Regenerate session ID to prevent fixation
+
+    $userId = $_SESSION["user_id"]; // Get the user ID from the session
+    $newSessionId = session_create_id(); // Create a new session ID
+    $session_id = $newSessionId . "_" . $userId; // Set the new session ID
+    session_id($session_id); // Update the session ID
+    $_SESSION["last_regeneration"] = time(); // Store the time of the last regeneration 
 }
 
 function regenerateSession() {
